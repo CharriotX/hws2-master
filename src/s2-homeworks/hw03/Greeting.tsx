@@ -1,15 +1,17 @@
-import React, {ChangeEvent, KeyboardEvent} from 'react'
+import React, { ChangeEvent, KeyboardEvent } from 'react'
 import s from './Greeting.module.css'
+import { UserType } from './HW3'
+import { Box, Button, TextField } from '@mui/material'
 
 type GreetingPropsType = {
-    name: any // need to fix any
-    setNameCallback: any // need to fix any
-    addUser: any // need to fix any
-    onBlur: any // need to fix any
-    onEnter: any // need to fix any
-    error: any // need to fix any
-    totalUsers: any // need to fix any
-    lastUserName?: any // need to fix any
+    name: string // need to fix any
+    setNameCallback: (e: ChangeEvent<HTMLInputElement>) => void// need to fix any
+    addUser: () => void // need to fix any
+    onBlur: () => void // need to fix any
+    onEnter: (e: KeyboardEvent) => void // need to fix any
+    error: string // need to fix any
+    totalUsers: number // need to fix any
+    lastUserName?: string // need to fix any
 }
 
 // презентационная компонента (для верстальщика)
@@ -25,48 +27,53 @@ const Greeting: React.FC<GreetingPropsType> = (
         lastUserName,
     } // деструктуризация пропсов
 ) => {
-    const inputClass = s.errorInput // need to fix with (?:)
-
+    const inputClass = error.length !== 0 ? s.errorInput : '' // need to fix with (?:)
+    console.log(Boolean(error.length !== 0))
     return (
-        <div id={'hw3-form'} className={s.greetingForm}>
-            <div className={s.text}>
+        <Box id={'hw3-form'} className={s.greetingForm} marginBottom={8}>
+            <Box className={s.text} color={"lightgray"}>
                 {'Людей добавили: '}
                 <span id={'hw3-users-total'}>
                     {totalUsers}
                 </span>
-            </div>
+            </Box>
 
-            <div className={s.inputAndButtonContainer}>
-                <div>
-                    <input
+            <Box className={s.inputAndButtonContainer} display={"flex"}>
+                <Box marginRight={2} width={"400px"}>
+                    <TextField
                         id={'hw3-input'}
                         value={name}
                         onChange={setNameCallback}
                         className={inputClass}
                         onKeyDown={onEnter}
                         onBlur={onBlur}
+                        size={"small"}
+                        fullWidth={true}
+                        variant='outlined'
                     />
                     <div id={'hw3-error'} className={s.error}>
                         {error}
                     </div>
-                </div>
-
-                <button
-                    id={'hw3-button'}
-                    onClick={addUser}
-                    className={s.button}
-                    disabled={!name.trim()}
-                >
-                    add
-                </button>
-            </div>
+                </Box>
+                <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                    <Button
+                        id={'hw3-button'}
+                        onClick={addUser}
+                        className={s.button}
+                        disabled={!name.trim()}
+                        variant='contained'
+                    >
+                        add
+                    </Button>
+                </Box>
+            </Box>
 
             {lastUserName && (
-                <div className={s.greeting}>
+                <Box className={s.greeting} marginTop={3}>
                     Привет <span id={'hw3-last-user'}>{lastUserName}</span>!
-                </div>
+                </Box>
             )}
-        </div>
+        </Box>
     )
 }
 
