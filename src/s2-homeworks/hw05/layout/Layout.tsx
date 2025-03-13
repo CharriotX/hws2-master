@@ -1,6 +1,7 @@
 import React, { FC, ReactNode, useEffect, useState } from 'react'
 import { Header } from '../header/Header'
 import { Sidebar } from '../sidebar/Sidebar'
+import style from "./Layout.module.css"
 
 type PropsType = {
     children: ReactNode
@@ -20,7 +21,7 @@ export const Layout: FC<PropsType> = ({ children }) => {
         <>
             <Sidebar open={open} handleClose={handleClose} />
             <Header handleOpen={handleOpen} />
-            <div>
+            <div className={style.content}>
                 {/*страницы*/}
                 {children}
             </div>
