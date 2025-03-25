@@ -65,6 +65,7 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
                     {...spanProps}
                     className={spanClassName}
                 >
+                    {o.value}
                 </span>
             </label>
         ))
