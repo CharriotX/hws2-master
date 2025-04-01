@@ -28,7 +28,6 @@ const Greeting: React.FC<GreetingPropsType> = (
     } // деструктуризация пропсов
 ) => {
     const inputClass = error.length !== 0 ? s.errorInput : '' // need to fix with (?:)
-    console.log(Boolean(error.length !== 0))
     return (
         <Box id={'hw3-form'} className={s.greetingForm} marginBottom={8}>
             <Box className={s.text} color={"lightgray"}>
