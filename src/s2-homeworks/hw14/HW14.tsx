@@ -35,8 +35,9 @@ const HW14 = () => {
         getTechs(value)
             .then((res) => {
                 // делает студент
+
                 if (res) {
-                    setTechs(res.data.techs)
+                    setTechs(prev => prev = res.data.techs)
                 }
                 // сохранить пришедшие данные
                 setLoading(false)
@@ -56,10 +57,8 @@ const HW14 = () => {
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
-        console.log(params)
         sendQuery(params.find || '')
         setFind(params.find || '')
-        getTechs(find)
     }, [])
 
     const mappedTechs = techs.map(t => (
