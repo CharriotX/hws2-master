@@ -30,15 +30,16 @@ const HW14 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<string[]>([])
 
-    const sendQuery = (value: string) => {
+    const sendQuery = async (value: string) => {
         setLoading(true)
-        getTechs(value)
+        await getTechs(value)
             .then((res) => {
                 // делает студент
 
                 if (res) {
                     setTechs(prev => prev = res.data.techs)
                 }
+                // setFind(prev => prev = '')
                 // сохранить пришедшие данные
                 setLoading(false)
                 //
@@ -51,7 +52,7 @@ const HW14 = () => {
 
         // добавить/заменить значение в квери урла
         // setSearchParams(
-        setSearchParams({ find: value })
+        //setSearchParams({ find: value })
         //
     }
 
