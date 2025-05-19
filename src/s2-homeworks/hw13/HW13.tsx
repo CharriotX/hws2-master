@@ -47,11 +47,7 @@ const HW13 = () => {
                     setCode('Ошибка 500!')
                     setImage(error500)
                     setText("эмитация ошибки на сервере")
-                    setInfo(prev => {
-                        const newState = 'ошибка 500 - обычно означает что что-то сломалось на сервере, например база данных)'
-                        return newState
-                    })
-                    console.log(info)
+                    setInfo('ошибка 500 - обычно означает что что-то сломалось на сервере, например база данных)')
                 } else if (e.response.status === 400) {
                     setCode('Ошибка 400!')
                     setImage(error400)
