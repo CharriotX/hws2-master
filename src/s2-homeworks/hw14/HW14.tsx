@@ -39,11 +39,8 @@ const HW14 = () => {
                     setTechs(res.data.techs)
                 }
                 // сохранить пришедшие данные
-
-                //
-            })
-            .finally(() => {
                 setLoading(false)
+                //
             })
     }
 
@@ -61,6 +58,7 @@ const HW14 = () => {
         const params = Object.fromEntries(searchParams)
         sendQuery(params.find || '')
         setFind(params.find || '')
+        getTechs(find)
     }, [])
 
     const mappedTechs = techs.map(t => (
